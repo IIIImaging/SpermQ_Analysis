@@ -34,7 +34,7 @@ dir <- "data"
 nonWTLabel <- "LAPD"
 outputFolder <- c(paste0(file.path(Sys.getenv("USERPROFILE"),"Desktop"), "/plots_SpermQ_", gsub(":","_",date()), "/"))
 
-xLim = c(0,90) #shown part of the flagellum in ?m
+xLim = c(0,90) #shown part of the flagellum in \u03BCm
 zoom = 2.2
 
 dir.create(outputFolder, showWarnings = T)
@@ -114,7 +114,7 @@ getLinePlot <- function(data, type = "_raw"){
   name = paste0(gsub(".txt","",txtName),type, "_line")
   svg(paste0(path, name, ".svg"))
   plot <- ggplot(raw, aes(x=arcLength, y=value, colour = type)) + geom_line(aes(group = ID))+ facet_grid(time ~type) +
-    theme_minimal() + xlab("arc Length (?m)") + xlim(xLim) + ylim(yLim) +ggtitle(name)
+    theme_minimal() + xlab("arc Length (\u03BCm)") + xlim(xLim) + ylim(yLim) +ggtitle(name)
   plots[["line"]] <<- plot
   print(plot)
   dev.off()
@@ -123,7 +123,7 @@ getLinePlot <- function(data, type = "_raw"){
 getBoxplot <- function(data, type = "_raw"){
   name = paste0(gsub(".txt","",txtName), type,"_boxplot")
   svg(paste0(path, name, ".svg"))
-  plot <- ggboxplot(raw, x="bin", y="value", color = "type", add = "boxplot") + theme_minimal() + xlab("arc Length (?m)") + ggtitle(name)
+  plot <- ggboxplot(raw, x="bin", y="value", color = "type", add = "boxplot") + theme_minimal() + xlab("arc Length (\u03BCm)") + ggtitle(name)
   plots[["boxplot"]] <<- plot
   print(plot)
   dev.off()
